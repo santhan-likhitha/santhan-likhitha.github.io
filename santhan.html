@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Marcellus&family=Mukta:wght@400;500;600&family=Noto+Serif+Telugu:wght@400&family=Suranna&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500&family=Great+Vibes&family=Marcellus&family=Mukta:wght@400;500;600&family=Noto+Serif+Telugu:wght@400&family=Suranna&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -38,7 +38,7 @@
   @keyframes breathe{0%,100%{opacity:.5}50%{opacity:.95}}
   .seal-hint{transition:opacity .5s ease;margin:0}
   #seal.open .seal-hint,#seal.open .seal-from{opacity:0}
-  .seal-from{font-family:var(--display);margin:0;transition:opacity .5s ease}
+  .seal-from{margin:0;transition:opacity .5s ease}
   /* ---------- hero ---------- */
   .hero{text-align:center}
   .hero-stack{display:grid}
@@ -85,7 +85,6 @@
   .person-name{font-family:var(--display);font-weight:400;font-size:clamp(2.3rem,7.5vw,3rem);line-height:1.1;margin:0;color:var(--ivory);letter-spacing:-.005em}
   .person-family{margin:.55rem 0 0;letter-spacing:.01em}
   .person-family span{display:block;font-style:normal;letter-spacing:.005em;margin-top:.35rem;text-wrap:balance}
-  .person-town{display:block;margin-top:.35rem}
   .knot{display:grid;place-items:center}
   .knot svg{width:64px;height:64px;opacity:.85}
   @media (max-width:51.99rem){
@@ -179,6 +178,7 @@
     #petals{display:none}
     .hang,.spark{animation:none!important}
   }
+  .nowrap{white-space:nowrap}
   /* =====================================================================
      THEME: cream temple-festival palette — brass diyas, bells, banana
      leaves, a wooden mandapam and a golden gopuram. Only colours and
@@ -211,7 +211,7 @@
   .js #seal{position:fixed;inset:0;z-index:60;place-items:center;background-color:var(--cream);background-image:radial-gradient(60% 55% at 50% 48%,rgba(255,236,190,.9),rgba(251,246,236,0) 70%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23F2EBDD' stroke-width='1'%3E%3Ccircle cx='90' cy='90' r='34'/%3E%3Ccircle cx='90' cy='90' r='22'/%3E%3Cpath d='M90 56c8 12 8 22 0 34c-8-12-8-22 0-34zM90 124c-8-12-8-22 0-34c8 12 8 22 0 34zM56 90c12-8 22-8 34 0c-12 8-22 8-34 0zM124 90c-12 8-22 8-34 0c12-8 22-8 34 0z'/%3E%3Ccircle cx='0' cy='0' r='14'/%3E%3Ccircle cx='180' cy='0' r='14'/%3E%3Ccircle cx='0' cy='180' r='14'/%3E%3Ccircle cx='180' cy='180' r='14'/%3E%3C/g%3E%3Cg fill='%23F4EEE2'%3E%3Ccircle cx='90' cy='90' r='4'/%3E%3Ccircle cx='0' cy='0' r='4'/%3E%3Ccircle cx='180' cy='0' r='4'/%3E%3Ccircle cx='0' cy='180' r='4'/%3E%3Ccircle cx='180' cy='180' r='4'/%3E%3C/g%3E%3C/svg%3E");background-size:auto,180px 180px;--stop:calc(var(--gw)*2.6);--pw:min(66vw,320px,calc(25vh*1.17));--sbot:calc(var(--pw)/1.17 + .5rem);--seal:min(72vw,300px,34vh);--g:clamp(1.4rem,calc((100svh - var(--stop) - var(--sbot) - var(--seal) - 5.6rem)/3.3),8rem)}
   #seal .garland{z-index:0}
   .seal-inner{place-items:center;position:relative;z-index:1;align-self:stretch;justify-self:stretch;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0;padding:calc(var(--stop) + var(--g)) var(--gutter) 0}
-  .seal-from{color:#1C4A23;margin-bottom:var(--g);font-size:clamp(1.55rem,4.6vw,2.3rem);line-height:1.25;letter-spacing:.03em}
+  .seal-from{font-family:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(1.6rem,6.2vw,3rem);line-height:1.2;letter-spacing:0;color:#1C4A23;margin-bottom:var(--g)}
   .seal-from::after{content:"";display:block;width:120px;height:14px;margin:.55rem auto 0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='14' viewBox='0 0 120 14'%3E%3Cpath d='M2 7H44M76 7H118' stroke='%23A9761A' stroke-width='1'/%3E%3Cpath d='M46 7c4 0 6-4 9-4c3 0 3 3 1 3M74 7c-4 0-6-4-9-4c-3 0-3 3-1 3M46 7c4 0 6 4 9 4c3 0 3-3 1-3M74 7c-4 0-6 4-9 4c-3 0-3-3-1-3' stroke='%23A9761A' stroke-width='1' fill='none'/%3E%3Ccircle cx='60' cy='7' r='2.6' fill='%23B3192B'/%3E%3C/svg%3E") center/120px 14px no-repeat}
   .seal-btn svg{height:auto;width:var(--seal)}
   .seal-hint{color:var(--ivory-dim);font-weight:500;letter-spacing:.06em;font-size:clamp(.98rem,2.5vw,1.08rem);margin-top:calc(var(--g)*.45)}
@@ -337,7 +337,7 @@
   .names{line-height:1;font-weight:400;letter-spacing:.01em}
   .names .amp{font-family:var(--script);font-style:normal;font-size:.62em;font-weight:400;letter-spacing:0;margin:.05em 0 .12em;line-height:1.1}
   .names,.person-name{-webkit-text-stroke:.03em currentColor;paint-order:stroke fill}
-  h2,.what h3,.seal-from,.scrub-clock,.unit b,.when b{-webkit-text-stroke:.014em currentColor;paint-order:stroke fill}
+  h2,.what h3,.scrub-clock,.unit b,.when b{-webkit-text-stroke:.014em currentColor;paint-order:stroke fill}
   h2,.person-name,.what h3,.nojs-event h3{letter-spacing:0}
   .hero-kicker{font-weight:600;letter-spacing:.16em;font-size:clamp(.95rem,2.6vw,1.08rem)}
   .hero-meta{font-weight:500;letter-spacing:.1em}
@@ -347,7 +347,6 @@
   .blessing .ro{font-family:var(--sans);font-weight:500;letter-spacing:.08em;color:var(--ivory-dim)}
   .person-family{font-family:var(--script);font-style:normal;font-size:clamp(1.55rem,3.8vw,1.75rem);line-height:1.3;color:#7A500C}
   .person-family span{font-family:var(--sans);font-weight:600;font-size:clamp(1.02rem,2.4vw,1.1rem);line-height:1.5;color:var(--ivory)}
-  .person-town{font-family:var(--sans);font-style:normal;font-weight:400;font-size:1rem;color:var(--ivory-dim)}
   .when b{line-height:1;font-size:2.3rem;color:var(--gold-bright)}
   .when i,.when em{font-size:.86rem;font-weight:500;letter-spacing:.08em;color:var(--ivory-dim)}
   .hour{font-weight:600;font-size:clamp(1.02rem,2.4vw,1.1rem)}
@@ -472,7 +471,7 @@
     <div class="hero-stack">
       <p class="hero-kicker">Friday, 13 November 2026</p>
       <h1 class="names">Santhan<span class="amp">weds</span>Likhitha</h1>
-      <p class="hero-meta">10:23 in the morning</p>
+      <p class="hero-meta">Sumuhurtham (auspicious time): <span class='nowrap'>10:23 AM to 10:27 AM</span></p>
       <p class="hero-place">ASR Convention &amp; Resort, Hyderabad</p>
     </div>
     <div class="scroll-cue" aria-hidden="true"></div>
@@ -494,7 +493,6 @@
         <h2 class="person-name">Santhan</h2>
         <p class="person-family">Youngest son of
           <span>Sri&nbsp;Penaka&nbsp;Subhash&nbsp;Reddy&nbsp;&amp; Smt&nbsp;Anusha</span>
-          <span class="person-town">Peyyalapalem, Kodavalur Mandal, Nellore</span>
         </p>
       </div>
       <div class="knot reveal" aria-hidden="true">
@@ -511,7 +509,6 @@
         <h2 class="person-name">Likhitha</h2>
         <p class="person-family">Only daughter of
           <span>Sri&nbsp;Gaddi&nbsp;Krishna&nbsp;Reddy&nbsp;&amp; Smt&nbsp;Gaddi&nbsp;Venkata&nbsp;Laxmi</span>
-          <span class="person-town">Dilsukh Nagar, Hyderabad</span>
         </p>
       </div>
     </div>
@@ -535,14 +532,14 @@
       <article class="nojs-event">
         <p class="d">FRIDAY 13 NOVEMBER 2026</p>
         <h3>The wedding</h3>
-        <p>Muhurtham at 10:23 AM</p>
+        <p>Sumuhurtham (auspicious time): <span class='nowrap'>10:23 AM to 10:27 AM</span></p>
         <p><b>ASR Convention &amp; Resort</b>Munganoor, Hayathnagar, Hyderabad</p>
         <p><a href="https://www.google.com/maps/search/?api=1&amp;query=ASR%20Convention%20and%20Resort%2C%20Munganoor%2C%20Hayathnagar%2C%20Hyderabad" target="_blank" rel="noopener">Open in Maps</a></p>
       </article>
       <article class="nojs-event">
         <p class="d">SUNDAY 15 NOVEMBER 2026</p>
         <h3>Reception and dinner</h3>
-        <p>From 7 in the evening</p>
+        <p>From 7 PM in the evening</p>
         <p><b>PVR Kalyana Mandapam</b>Near Annamaya Circle, Mini Bypass Road, Nellore</p>
         <p><a href="https://www.google.com/maps/search/?api=1&amp;query=PVR%20Kalyana%20Mandapam%2C%20Annamaya%20Circle%2C%20Mini%20Bypass%20Road%2C%20Nellore" target="_blank" rel="noopener">Open in Maps</a></p>
       </article>
@@ -559,7 +556,6 @@
         <div class="skywrap">
           <canvas id="skycanvas" role="img" aria-label="The sky above the wedding venue at the muhurtham, seen as if lying down and looking straight up."></canvas>
         </div>
-        <p class="skytip">Imagine lying on your back at the venue and looking up. The middle of the circle is straight above you, and the gold ring is the horizon all around.</p>
         <figcaption class="skyread" id="skyread"></figcaption>
       </figure>
       <div class="scrub reveal">
@@ -575,7 +571,8 @@
           <button class="btn" type="button" id="skyreset">Back to the muhurtham</button>
         </div>
       </div>
-      <p class="sky-note reveal">Our elders chose this moment for its good stars: Mulanakra Yuktha Dhanurlagna. Every star and planet here sits exactly where it will be above our mandapam at that minute. It is the real sky, not a drawing.</p>
+      <p class="sky-note reveal">Our elders chose this moment for its good stars: Mulanakra Yuktha Dhanurlagna. Every star and planet here sits exactly where it will be above our mandapam at that minute.</p>
+      <p class="skytip reveal">Imagine lying on your back at the venue and looking up. The middle of the circle is straight above you, and the gold ring is the horizon all around.</p>
       <p class="count-label">TIME LEFT UNTIL THE MUHURTHAM</p>
       <div class="countdown" id="countdown" role="timer" aria-live="off">
         <div class="unit"><b id="cdD">&mdash;</b><span>days</span></div>
@@ -649,7 +646,7 @@
     },
     {
       id:"wedding", day:"13", dow:"Friday", title:"The wedding",
-      hour:"Muhurtham at 10:23 AM",
+      hour:"Sumuhurtham (auspicious time): <span class='nowrap'>10:23 AM to 10:27 AM</span>",
       venue:"ASR Convention & Resort",
       addr:"Munganoor, Hayathnagar, Hyderabad",
       map:"ASR Convention and Resort, Munganoor, Hayathnagar, Hyderabad",
@@ -658,7 +655,7 @@
     },
     {
       id:"reception", day:"15", dow:"Sunday", title:"Reception and dinner",
-      hour:"From 7 in the evening",
+      hour:"From 7 PM in the evening",
       venue:"PVR Kalyana Mandapam",
       addr:"Near Annamaya Circle, Mini Bypass Road, Nellore",
       map:"PVR Kalyana Mandapam, Annamaya Circle, Mini Bypass Road, Nellore",
