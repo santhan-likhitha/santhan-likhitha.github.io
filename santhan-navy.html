@@ -1044,11 +1044,9 @@
 
   /* ---------------- seal ---------------- */
   var seal = document.getElementById("seal");
-  var startMusic = null;
   function openSeal(){
     if(!document.body.classList.contains("sealed")) return;
     document.body.classList.remove("sealed");
-    if(startMusic) startMusic();
     seal.classList.add("open");
     document.getElementById("hero").classList.add("revealed");
     setTimeout(function(){ if(seal.parentNode) seal.parentNode.removeChild(seal); }, 2400);
@@ -1059,34 +1057,65 @@
     if((e.key === "Enter" || e.key === " ") && document.body.classList.contains("sealed")){ e.preventDefault(); openSeal(); }
   });
 
-  /* ---------------- music: loops quietly; the button pauses and resumes ---------------- */
+  /* ---------------- music: a drone and a slow Mohanam phrase ---------------- */
   (function(){
     var btn = document.getElementById("audioBtn");
-    var au = new Audio("music.mp3");
-    au.loop = true; au.preload = "auto";
-    var on = false, fade = null;
-    function ramp(to, done){
-      clearInterval(fade);
-      fade = setInterval(function(){
-        var v = au.volume + (to > au.volume ? .05 : -.05);
-        if((to > au.volume && v >= to) || (to <= au.volume && v <= to)){ v = to; clearInterval(fade); if(done) done(); }
-        au.volume = Math.max(0, Math.min(1, v));
-      }, 60);
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if(!AC){ btn.style.display = "none"; return; }
+    var ac = null, master = null, on = false, step = 0;
+    // Mohanam (S R2 G3 P D2) rooted on D
+    var SCALE = [293.66,329.63,369.99,440.00,493.88,587.33,659.25];
+    var PHRASE = [0,1,2,3,2,4,3,5,4,3,2,1,0,2,3,5,4,2,1,0];
+
+    function pluck(freq, t, vol){
+      var o = ac.createOscillator(), o2 = ac.createOscillator(), gnode = ac.createGain(), f = ac.createBiquadFilter();
+      o.type = "triangle"; o.frequency.value = freq;
+      o2.type = "sine"; o2.frequency.value = freq*2.002;
+      f.type = "lowpass"; f.frequency.setValueAtTime(2600,t); f.frequency.exponentialRampToValueAtTime(700,t+1.6);
+      gnode.gain.setValueAtTime(0,t);
+      gnode.gain.linearRampToValueAtTime(vol,t+0.035);
+      gnode.gain.exponentialRampToValueAtTime(0.0008,t+2.4);
+      o.connect(f); o2.connect(f); f.connect(gnode); gnode.connect(master);
+      o.start(t); o2.start(t); o.stop(t+2.6); o2.stop(t+2.6);
     }
-    function set(state){
-      on = state;
+    function drone(freq, vol){
+      var o = ac.createOscillator(), gnode = ac.createGain(), lfo = ac.createOscillator(), lg = ac.createGain();
+      o.type = "sine"; o.frequency.value = freq;
+      gnode.gain.value = vol;
+      lfo.frequency.value = 0.07; lg.gain.value = vol*0.4;
+      lfo.connect(lg); lg.connect(gnode.gain);
+      o.connect(gnode); gnode.connect(master);
+      o.start(); lfo.start();
+    }
+    function build(){
+      ac = new AC();
+      master = ac.createGain();
+      master.gain.value = 0;
+      var dl = ac.createDelay(1.2), fb = ac.createGain(), wet = ac.createGain();
+      dl.delayTime.value = 0.46; fb.gain.value = 0.3; wet.gain.value = 0.3;
+      master.connect(ac.destination);
+      master.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(ac.destination);
+      drone(146.83, 0.035); drone(220.00, 0.022);
+      setInterval(function(){
+        if(!on) return;
+        var t = ac.currentTime + 0.02;
+        pluck(SCALE[PHRASE[step % PHRASE.length]], t, 0.14);
+        if(step % 4 === 0) pluck(146.83, t, 0.05);
+        step++;
+      }, 900);
+    }
+    btn.addEventListener("click", function(){
+      try{
+      if(!ac) build();
+      if(ac.state === "suspended") ac.resume();
+      on = !on;
       btn.setAttribute("aria-pressed", on ? "true" : "false");
       btn.setAttribute("aria-label", on ? "Pause music" : "Play music");
-    }
-    function play(){
-      au.volume = 0;
-      var p = au.play();
-      if(p && p.catch) p.catch(function(){ set(false); });
-      set(true); ramp(.8);
-    }
-    function pause(){ set(false); ramp(0, function(){ au.pause(); }); }
-    btn.addEventListener("click", function(){ if(on) pause(); else play(); });
-    startMusic = play;
+      master.gain.cancelScheduledValues(ac.currentTime);
+      master.gain.setValueAtTime(master.gain.value, ac.currentTime);
+      master.gain.linearRampToValueAtTime(on ? 0.9 : 0, ac.currentTime + (on ? 1.6 : 0.7));
+      }catch(e){ btn.style.display = "none"; }
+    });
   })();
 })();
 </script>
